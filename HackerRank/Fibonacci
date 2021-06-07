@@ -1,0 +1,58 @@
+import thread
+import time
+
+#using recursion, however not veyr well optimized overall
+
+#n represents which position in the fibonacci sequence the number is 
+def FibonacciRecursive(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return FibonacciRecursive(n-2) + FibonacciRecursive(n-1)
+
+#use dynamic programming instead 
+
+FibArray = [0,1]
+
+def FibonacciDynamic(n):
+    if n < 0:
+        print("Incorrect Input")
+    elif n == 0:
+        return FibArray[0]
+    elif n <= len(FibArray) - 1:
+        return FibArray[n]
+    else: 
+        temp_fib = FibonacciDynamic(n-2) + FibonacciDynamic(n-1)
+        FibArray.append(temp_fib)
+        return temp_fib
+
+def FibonacciSpace():
+    
+
+for i in range(0,20):
+    print(FibonacciRecursive(i))
+    print(FibonacciDynamic(i))
+    
+
+
+#Trying to make separate threads to compare run time between the functions
+
+# Define a function for the thread
+def print_time( threadName, delay):
+    count = 0
+    while count < 5:
+        time.sleep(delay)
+        count += 1
+        print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
+
+# Create two threads as follows
+try:
+    thread.start_new_thread( print_time, ("Thread-1", 2, ) )
+    thread.start_new_thread( print_time, ("Thread-2", 4, ) )
+    thread.start_new_thread( FibonacciDynamic(20) )
+except:
+    print ("Error: unable to start thread")
+
+while 1:
+    pass

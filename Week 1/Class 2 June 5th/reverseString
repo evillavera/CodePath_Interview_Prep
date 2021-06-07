@@ -1,0 +1,28 @@
+#assuming we can use built in functions 
+
+def reverseStr(inStr):
+    resultStr = ""
+
+    for i in range(len(inStr)): 
+        #join(starting str, appending str)
+        resultStr = "".join((inStr[i], resultStr))
+        
+    return resultStr
+
+#no built in functions
+
+def reverseString(inStr):
+    resultStr = ""
+    stringSize = len(inStr) - 1
+
+    while stringSize > -1:
+        resultStr += inStr[stringSize]
+        stringSize = stringSize - 1
+        # print(resultStr)
+    
+    return resultStr
+
+
+print(reverseStr("h e l l o"))
+
+print(reverseString("h e l l o"))
