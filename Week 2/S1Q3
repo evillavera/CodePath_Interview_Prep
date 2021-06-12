@@ -1,0 +1,27 @@
+def longestConsecutiveSubsequence(in_arr):
+    if(len(in_arr) is 0):
+        return 0
+    result_map = {}
+    result = 1
+
+#mapping array to dictionary
+    for i in range(0, len(in_arr)):
+        if in_arr[i] in result_map:
+            result_map[in_arr[i]] += 1
+        else:
+            result_map[in_arr[i]] = 1
+    
+#Loop through original array to look for keys 
+    for i in range(0, len(in_arr)):
+        searchingKey = in_arr[i]
+        length = 0
+        while result_map.__contains__(searchingKey):
+            length += 1
+            searchingKey += 1
+        if result < length:
+            result = length
+
+    return result
+
+in_arr = [36, 41, 56, 35, 44, 33, 34, 43, 92, 32, 42]
+print(longestConsecutiveSubsequence(in_arr))

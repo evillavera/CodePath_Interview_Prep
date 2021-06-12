@@ -1,0 +1,25 @@
+#inputs are 2 Lists contaiing Integers
+#output a list containing the intersection
+#meaning return which numbers they share and no duplicates 
+def intersection(nums1, nums2):
+    map1 = {}
+    map2 = {}
+    res = []
+    
+    for num in nums1:
+        if not map1.__contains__(num):
+            map1[num] = 1
+    
+    for num in nums2:
+        if not map2.__contains__(num):
+            map2[num] = 1
+            
+    for key in map1:
+        if(map2.__contains__(key) and not res.__contains__(key)):
+            res.append(key)
+    
+    return res
+
+nums1 = [4,9,5]
+nums2 = [9,4,9,8,4]
+print(intersection(nums1, nums2))

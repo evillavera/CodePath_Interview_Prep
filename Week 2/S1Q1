@@ -1,0 +1,25 @@
+#Input: Array and an int X
+#Output: The first two elements in the array whose sum is X (give position)
+#Given an array of size n and a number x, determine the first 
+# two elements in the array, if any, whose sum is exactly x
+def FindAPair(arr, sum):
+    result = [-1,-1]
+    leftOver = sum 
+    for i in range(0, len(arr)):
+        print("Next iteration")
+        print("Current i value: " + str(arr[i]))
+        for j in range(0, len(arr)):
+            leftOver = sum - arr[i]
+            if i == j:
+                continue
+            print(arr[j])
+            if(leftOver == arr[j]):
+                result[0] = i
+                result[1] = j
+                return result
+    
+    return result
+
+someArr = [3,5,6,2,4,6,7,10,3,1,5,8,4,9,2,21,5,13]
+
+print(FindAPair(someArr, 14))

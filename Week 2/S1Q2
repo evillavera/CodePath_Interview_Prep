@@ -1,0 +1,45 @@
+#Find the element that appears k number of times in an array.
+
+def numOfTimes(arr, numOfAppearances):
+    dataArr = []
+    result = [-1]
+    for i in range(0, len(arr)):
+        dataArr[arr[i]] += 1
+    
+    for j in range(0, len(dataArr)):
+        if dataArr[j] == numOfAppearances:
+            result.append(dataArr[j])
+    
+    return result
+
+# someArr = [3,3,3,1,2,1,2,2,2]
+
+# print(numOfTimes(someArr, 2))
+
+def apperance(arr, numOfAppearances):
+    result_map = {}
+    result = [-1]
+
+    #fill in info
+    for i in range(0, len(arr)):
+        if(arr[i] in result_map.keys()):
+            result_map[arr[i]] += 1
+        else:
+            result_map[arr[i]] = 1
+    
+    #search through
+    for j in range(0, len(arr)):
+        if(result_map[arr[j]] == numOfAppearances):
+            if result.__contains__(arr[j]):
+                continue
+            else:
+                result.append(arr[j])
+            
+
+    print(result_map)
+
+    return result
+
+someArr = [3,3,3,1,2,1,2,2,2,4,4,100]
+
+print(apperance(someArr, 6))

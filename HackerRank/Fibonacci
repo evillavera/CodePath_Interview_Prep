@@ -27,32 +27,60 @@ def FibonacciDynamic(n):
         FibArray.append(temp_fib)
         return temp_fib
 
-def FibonacciSpace():
-    
 
-for i in range(0,20):
-    print(FibonacciRecursive(i))
-    print(FibonacciDynamic(i))
+#Space optimized
+def FibonacciSpace(): 
+    return
+
+# for i in range(0,20):
+#     print(FibonacciRecursive(i))
+#     print(FibonacciDynamic(i))
+
+
+#Fibonacci Dynamic
+FibArray2 = [0,1]
+
+def FibonacciDynamic2(num):
+    #Handle edge cases first
+    if(num < 0):
+        print('Invalid Inpit')
+        return
+    elif(num == 0): 
+        return FibArray2[0]
+    elif(num <= len(FibArray2) - 1): #return element if in array 
+        return FibArray2[num]
+    else: #Calculate the missing values 
+        return FibonacciDynamic2(num - 2) + FibonacciDynamic2(num - 1)
+
+
+print(FibonacciDynamic2(33))
+
+
+
     
 
 
 #Trying to make separate threads to compare run time between the functions
 
 # Define a function for the thread
-def print_time( threadName, delay):
-    count = 0
-    while count < 5:
-        time.sleep(delay)
-        count += 1
-        print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
+# def print_time( threadName, delay):
+#     count = 0
+#     while count < 5:
+#         time.sleep(delay)
+#         count += 1
+#         print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
 
-# Create two threads as follows
-try:
-    thread.start_new_thread( print_time, ("Thread-1", 2, ) )
-    thread.start_new_thread( print_time, ("Thread-2", 4, ) )
-    thread.start_new_thread( FibonacciDynamic(20) )
-except:
-    print ("Error: unable to start thread")
+# # Create two threads as follows
+# try:
+#     thread.start_new_thread( print_time, ("Thread-1", 2, ) )
+#     thread.start_new_thread( print_time, ("Thread-2", 4, ) )
+#     thread.start_new_thread( FibonacciDynamic(20) )
+# except:
+#     print ("Error: unable to start thread")
 
-while 1:
-    pass
+# while 1:
+#     pass
+
+
+# return sum([{'M':1000,"D":500,"C":100,"L":50,"X":10,"V":5,"I":1}[i] 
+# for i in s.replace("IV", "IIII").replace("IX", "VIIII").replace("XL", "XXXX").replace("XC", "LXXXX").replace("CD", "CCCC").replace("CM", "DCCCC")])

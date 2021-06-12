@@ -1,0 +1,18 @@
+#incorrect 
+class Solution:
+    def isSumEqual(self, firstWord: str, secondWord: str, targetWord: str) -> bool:
+        dict = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f':5, 'g': 6, 'h': 7, 'i': 8, 'j': 9}
+        value1 = 0
+        value2 = 0
+        targetSum = 0
+        for i in firstWord:
+            value1 += dict[i]
+            print("Value 1 is {}".format(str(value1)))
+        for i in secondWord:
+            value2 += dict[i]
+            print("Value 2 is {}".format(str(value2)))
+        for i in targetWord:
+            targetSum += dict[i]
+            print("Target Sum is {}".format(str(targetSum)))
+        
+        return (value1 + value2) is targetSum

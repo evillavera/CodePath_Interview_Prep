@@ -1,0 +1,13 @@
+
+def isPalindrome(x):
+    if(x < 0):
+        return 0
+    
+    s = str(x)
+    result = ""
+    for i in range(0,len(s)):
+        result = "".join((s[i], result))
+        print(result)
+    return result in s 
+
+print(isPalindrome(121))
