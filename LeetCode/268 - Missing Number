@@ -1,0 +1,16 @@
+#0 1 3 6 10 15 
+#Given an array nums containing n distinct numbers in the range [0, n], 
+#return the only number in the range that is missing from the array.
+#Will always start at 0, just find the missing number
+
+#STRATEGY: 
+#I was thinking about taking the whole sum of the array 
+#This reminded me of a series using sigma
+#Needed to refresh my memory on what the formula is to calculate the total sum 
+#EQUATION : n (n + 1) / 2
+#So first calculate what the total sum of the array should be based on its size
+#Subtract by the total sum of the array 
+def missingNumber(nums):
+    n = len(nums)
+    return (n * (n + 1) // 2) - sum(nums)
+    

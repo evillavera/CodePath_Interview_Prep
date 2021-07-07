@@ -1,0 +1,23 @@
+def BinarySearch(nums, target):
+    
+    beg_index = 0
+    end_index = len(nums) - 1
+    
+    while beg_index <= end_index:
+        midpoint = (beg_index + end_index) // 2
+        mid_val = nums[midpoint]
+        
+        if(mid_val is target):
+            return midpoint
+        elif(mid_val < target):
+            beg_index = midpoint + 1
+        else:
+            end_index = midpoint - 1
+
+    return None
+
+arr1 = [35, 40, 52, 103, 118, 119, 320]
+print(BinarySearch(arr1, 35))
+print(BinarySearch(arr1, 36))
+print(BinarySearch(arr1, 119))
+print(BinarySearch(arr1, 5))

@@ -1,0 +1,9 @@
+str = "HelloWorld"
+# print(enumerate(str))
+
+for i,x in enumerate(str):
+    print(i)
+    print(x)
+
+
+

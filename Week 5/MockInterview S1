@@ -1,0 +1,68 @@
+def numOfOccurences(word, book):
+    #Validate Input
+    if(book is None or len(book) is 0):
+        return -1
+
+    res = 0
+    
+    for item in book:
+        if item.lower() == word.lower():
+            res += 1
+    
+    return res
+
+arr1 = [" The", "dog", "jumped", "in", "the", "Dog", "house"]
+arr2 = []
+
+print(numOfOccurences("dog", arr1))
+print(numOfOccurences("dog", arr2))
+
+
+#Implement a method to find the number of occurrences of any given word in a book. A word is represented as a string and a book is represented as an array / list of strings.
+#Optimize the method to be called multiple times.
+
+#Book: [" The", "dog", "jumped", "in", "the", "dog", "house" ...]
+#Word: "dog"  →  Occurrences: 2
+
+#Book: [" The", "Dog", "jumped", "in", "the", "dOg", "house" ...]
+#Word: "dog"  →  Occurrences: 2
+
+#Book: []
+#Word: "dog"  →  Occurrences: -1
+
+#Questions:
+#What if list is empty? 
+#Does capitalization matter? Assuming Not
+#Time and Space Constraints?
+
+#Method will take 2 inputs, the word (String) and a book (List of Strings)
+
+def numOfOccurences(word, book):
+    #Validate Input
+    if(book is None or len(book) == 0):
+        return -1
+
+    res = 0
+    
+    for item in book:
+        if item.lower() == word.lower():
+            res += 1
+    
+    return res
+    
+    
+#Time: O(N)
+#Space: O(1)
+   
+
+#Things missed
+#White space? Trim the words
+#What is word is empty or no occurences?
+
+#Optimize it!!
+
+#we would make a global hash table
+#keys would be the word
+#value would be the count
+
+#But what if the book is different? Wouldn't we need to redo the hashmap values?

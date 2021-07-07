@@ -84,3 +84,21 @@ print(FibonacciDynamic2(33))
 
 # return sum([{'M':1000,"D":500,"C":100,"L":50,"X":10,"V":5,"I":1}[i] 
 # for i in s.replace("IV", "IIII").replace("IX", "VIIII").replace("XL", "XXXX").replace("XC", "LXXXX").replace("CD", "CCCC").replace("CM", "DCCCC")])
+
+
+FibList = [0,1]
+def FibonacciDynamic3(ind):
+    if(ind < 0):
+        return None
+    if(ind <= len(FibList) - 1):
+        return FibList[ind]
+    
+    val = FibonacciDynamic3(ind - 1) + FibonacciDynamic3(ind - 2)
+    FibList.append(val)
+    return val
+
+print(FibonacciDynamic3(4))
+
+#I keep forgetting to append the value to the array which is the whole point of 
+#using dynamic programming here
+#other than that, it should work in general

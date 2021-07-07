@@ -1,0 +1,140 @@
+#You are given two non-empty linked lists representing two non-negative 
+# integers. The digits are stored in reverse order and each of their nodes 
+# contain a single digit. Add the two numbers and return it as a linked list.
+
+#You may assume the two numbers do not contain any leading zero, except the 
+# number 0 itself.
+
+#Ex:
+# Input: 2 -> 4 -> 3,  5 -> 6 -> 4
+# Output: 7 -> 0 -> 8
+
+# Explanation: 342 + 465 = 807
+
+#need a linked list class so got one here from online 
+class Node:
+    def __init__(self, dataval=None):
+        self.dataval = dataval
+        self.nextval = None
+
+class SLinkedList:
+    def __init__(self):
+        self.headval = None
+
+list1 = SLinkedList()
+list1.headval = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+# Link first Node to second node
+list1.headval.nextval = e2
+
+# Link second Node to third node
+e2.nextval = e3
+
+# temp_node = list1.headval
+# while(temp_node != None):
+#     print(temp_node.dataval)
+#     temp_node = temp_node.nextval
+
+def printLL(in1):
+    temp_node = in1.headval
+    while(temp_node != None):
+        print(temp_node.dataval)
+        temp_node = temp_node.nextval
+
+#looks very inefficient but let's talk time and space
+#we go through multiple passes, at most ~O(3n) 
+#we do not create a new data structure, but we do create a lot of variables
+#Time = O(n)
+#Space = O(1)
+def addTwoNumbers(in1, in2):
+    num1 = 0
+    num2 = 0
+    multiplier1 = 1
+    multiplier2 = 1
+
+    temp_node1 = in1.headval
+    while(temp_node1 != None):
+        num1 += temp_node1.dataval * multiplier1
+        multiplier1 *= 10
+        temp_node1 = temp_node1.nextval
+
+    temp_node2 = in2.headval
+    while(temp_node2 != None):
+        num2 += temp_node2.dataval * multiplier2
+        multiplier2 *= 10
+        temp_node2 = temp_node2.nextval
+    
+    res_sum = num1 + num2 
+
+    #turn it back into a linked list
+    res = SLinkedList()
+    #insert the head aka first value
+    digit = res_sum % 10
+    res_sum = res_sum // 10
+    node = Node(digit)
+    res.headval = node
+    while(res_sum > 0):
+        digit = res_sum % 10
+        res_sum = res_sum // 10
+        prev_node = node
+        node = Node(digit)
+        prev_node.nextval = node
+
+    return res
+
+linkedList1 = SLinkedList()
+linkedList1.headval = Node(2)
+l1 = Node(4)
+l2 = Node(3)
+
+linkedList1.headval.nextval = l1
+l1.nextval = l2
+
+linkedList2 = SLinkedList()
+linkedList2.headval = Node(5)
+m1 = Node(6)
+m2 = Node(4)
+
+linkedList2.headval.nextval = m1
+m1.nextval = m2
+
+# printLL(linkedList1)
+# printLL(linkedList2)
+
+printLL(addTwoNumbers(linkedList1, linkedList2))
+
+
+#Worked on LeetCode 
+#check out question 2 
+
+#Alternative solutions
+
+class Solution:
+# @return a ListNode
+    def addTwoNumbers(self, l1, l2):
+        carry = 0
+        root = n = ListNode(0)
+        while l1 or l2 or carry:
+            v1 = v2 = 0
+            if l1:
+                v1 = l1.val
+                l1 = l1.next
+            if l2:
+                v2 = l2.val
+                l2 = l2.next
+            carry, val = divmod(v1+v2+carry, 10)
+            n.next = ListNode(val)
+            n = n.next
+        return root.next
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        def toint(node):
+            return node.val + 10 * toint(node.next) if node else 0
+        def tolist(n):
+            node = ListNode(n % 10)
+            if n > 9:
+                node.next = tolist(n / 10)
+            return node
+        return tolist(toint(l1) + toint(l2))
