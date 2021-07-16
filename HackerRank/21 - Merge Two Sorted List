@@ -1,0 +1,40 @@
+# Definition for singly-linked list.
+from typing import List
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def mergeTwoLists(l1, l2):
+    res = ListNode(0)
+    dummy = res
+    
+    while l1 and l2:
+        if l1.val <= l2.val:
+            dummy.next = l1
+            l1 = l1.next
+        else:
+            dummy.next = l2
+            l2 = l2.next
+        dummy = dummy.next
+        
+    dummy.next = l1 or l2
+    
+    return res.next
+
+def printLL(ele):
+    while(ele):
+        print(ele.val)
+        ele = ele.next
+
+
+test1 = ListNode(1)
+test1.next = ListNode(2)
+test1.next.next = ListNode(4)
+test2 = ListNode(1)
+test2.next = ListNode(3)
+test2.next.next = ListNode(4)
+
+printLL(mergeTwoLists(test1, test2))
