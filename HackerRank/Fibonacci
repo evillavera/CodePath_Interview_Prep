@@ -1,4 +1,3 @@
-import thread
 import time
 
 #using recursion, however not veyr well optimized overall
