@@ -1,0 +1,92 @@
+#Given a linked list, remove the n-th node from the end of list and return its head.
+
+#Input: 1->2->3->4->5, n = 2
+#Output: 1->2->3->5
+
+#Explanation: We remove the second node from the end, the node with value 4
+
+#need a linked list class so got one here from online 
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+list1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+# Link first Node to second node
+list1.next = e2
+
+# Link second Node to third node
+e2.next = e3
+
+# temp_node = list1.headval
+# while(temp_node != None):
+#     print(temp_node.dataval)
+#     temp_node = temp_node.nextval
+
+def printLL(in1):
+    temp_node = in1
+    while(temp_node != None):
+        print(temp_node.data)
+        temp_node = temp_node.next
+
+def removeNthNodeFromEndofList(l1, pos):
+    if pos <= 0:
+        return l1
+    
+    if not l1:
+        return None
+
+    temp_node = l1
+    length = 0
+    while(temp_node):
+        length += 1
+        temp_node = temp_node.next
+
+    if(length < pos):
+        return l1
+
+    prev_node = None
+    loc = length - pos
+    temp_node = l1
+    while(loc > 0):
+        prev_node = temp_node
+        temp_node = temp_node.next
+        loc -= 1
+    prev_node.next = temp_node.next
+    temp_node.next = None
+
+    return l1
+
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+     dummy = ListNode(0)
+     dummy.next = head
+     first = dummy
+     second = dummy
+     # Advances first pointer so that the gap between first and second is n nodes apart
+     for i in range(n+1):
+         first = first.next
+     # Move first to the end, maintaining the gap
+     while (first != None):
+         first = first.next
+         second = second.next
+     second.next = second.next.next
+     return dummy.next
+
+testll = Node(1)
+n1 = Node(2)
+n2 = Node(3)
+n3 = Node(4)
+n4 = Node(5)
+
+testll.next = n1
+n1.next = n2
+n2.next = n3
+n3.next = n4
+
+testll2 = Node(1)
+
+printLL(removeNthNodeFromEndofList(testll, 2))
+printLL(removeNthNodeFromEndofList(testll2, 2))
+printLL(removeNthNodeFromEndofList(testll2, 1))

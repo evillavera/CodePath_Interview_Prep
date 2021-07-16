@@ -1,0 +1,34 @@
+#linked list problem, so need class to test it 
+#coded a class real quick and works
+#try and except is a powerful tool, it is better to ask for forgiveness than for permission
+class Node:
+    def __init__(self, data = None):
+        data = data
+        next = None
+
+def hasCycle(head):
+    if not head:
+        return False
+    try:
+        slow = head
+        fast = head.next
+        while slow is not fast:
+            slow = slow.next
+            fast = fast.next.next
+        return True
+    except:
+        return False
+
+n3 = Node(3)
+n2 = Node(2)
+n0 = Node(0)
+n_4 = Node(-4)
+
+test = n3
+test.next = n2
+test.next.next = n0
+test.next.next = n_4
+test.next.next = n2
+
+print(hasCycle(test))
+

@@ -1,0 +1,32 @@
+#not done yet, but really good problem
+#cant make it unique 
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) < 3:
+            return []
+        
+        res = []
+        
+        dict = {}
+        
+        for num in nums:
+            if(num in dict):
+                dict[num] += 1
+            else:
+                dict[num] = 1
+        
+        for num in nums:
+            for d_num in dict:
+                if(dict[num] is 1 and d_num is num):
+                    continue
+                missing_num = (num + d_num) * -1 
+                if(missing_num is num or missing_num is d_num):
+                    if(dict[missing_num] is not 2):
+                        continue 
+                if(dict.__contains__(missing_num)):
+                    sol = [num, d_num, missing_num]
+                    res.append(sol)
+        
+        return res
+                

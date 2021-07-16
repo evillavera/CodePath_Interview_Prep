@@ -1,0 +1,17 @@
+#Given a non-empty array of integers nums, every element appears 
+# twice except for one. Find that single one.
+#Using a set to store values, if it exists inside my set then remove it
+#Return my set which should continue the 1 solo element
+#Didn't use a dict because no need for key value pairs 
+def singleNumber(nums):
+    int_set = set()
+    
+    for num in nums:
+        if num in int_set:
+            int_set.remove(num)
+        else:
+            int_set.add(num)
+    
+    return int_set.pop()
+
+#alternative solutions

@@ -1,0 +1,33 @@
+#takes in a SORTED list of integers and an int 
+#returns the position of the targeted int in the list if it exists
+#if it doesn't exit, it will return where in the list it should be 
+#the list is sorted in ascending order 
+#should have time complexity of O(log(n)) aka binary search time 
+def searchInsert(nums, target):
+    
+    beg_index = 0
+    end_index = len(nums) - 1
+    
+    while beg_index <= end_index:
+        midpoint = (beg_index + end_index) // 2
+        mid_val = nums[midpoint]
+        
+        if(mid_val is target):
+            return midpoint
+        elif(mid_val < target):
+            beg_index = midpoint + 1
+            addOne = True
+        else:
+            end_index = midpoint - 1
+            addOne = False
+    
+    if addOne:
+        return midpoint + 1
+
+    return midpoint
+
+arr1 = [0,1,2,2,3,4,6,7,8,9]
+print(searchInsert(arr1, 2))
+print(searchInsert(arr1, 6))
+print(searchInsert(arr1, 10))
+print(searchInsert(arr1, 5))

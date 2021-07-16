@@ -1,0 +1,54 @@
+#Given two integer arrays nums1 and nums2, return an array of their intersection. 
+# Each element in the result must appear as many times as it shows in both arrays 
+# and you may return the result in any order.
+
+#Constraints!
+
+def intersectionArrayWithHashMaps(arr1, arr2):
+    dic1 = {}
+    dic2 = {}
+
+    res = []
+
+    for num in arr1:
+        if(dic1.__contains__(num)):
+            dic1[num] += 1
+        else:
+            dic1[num] = 1
+    
+    for num in arr2:
+        if(dic2.__contains__(num)):
+            dic2[num] += 1
+        else:
+            dic2[num] = 1
+
+    print(dic1)
+    print(dic2)
+
+    if(len(dic1) >= len(dic2)):
+        for key in dic1:
+            if dic2.__contains__(key):
+                if(dic1[key] <= dic2[key]):
+                    for i in range(0,dic1[key]):
+                        res.append(key)
+                else:
+                    for i in range(0,dic2[key]):
+                        res.append(key)
+    else:
+        for key in dic2:
+            if dic1.__contains__(key):
+                if(dic2[key] <= dic1[key]):
+                    for i in range(0,dic2[key]):
+                        res.append(key)
+                else:
+                    for i in range(0,dic1[key]):
+                        res.append(key)
+
+    print(res)
+
+    return 0
+
+arr1 = [1,2,2,1]
+arr2 = [2,2]
+
+intersectionArrayWithHashMaps(arr1, arr2)

@@ -1,0 +1,56 @@
+#Given an array of size n and a number x, 
+# determine the first two elements in the array, if any, 
+# whose sum is exactly x.
+
+# def findAPairWithGivenSumWithDict(arr, size):
+#     dic = {}
+
+#     for item in arr: #fill in the dictionary
+#         if(item in dic.keys()):
+#             dic[item] += 1
+#         else:
+#             dic[item] = 1
+    
+def findAPairWithGivenSumWithDict(arr, size):
+  dic = {}
+  res = []
+
+  #Should maybe check for empty arrays or size 1 arrays 
+  #To avoid creating a dictionary in the first place
+  
+  if(len(arr) < 2):
+      return None
+
+  for item in arr: #fill in the dictionary
+      if(item in dic.keys()):
+          dic[item] += 1
+      else:
+          dic[item] = 1
+  
+
+  for num in arr:
+    difference = size - num
+    if(dic.__contains__(difference)):
+      res = [num, difference]
+      return res 
+  
+  return None 
+
+arr1 = [3, 2, 6, 9, 5]
+sum1 = 9
+arr2 = [10, 1, 5]
+sum2 = 7
+arr3 = []
+sum3 = 2
+arr4 = [1, 5, 2, 4]
+sum4 = 6
+arr5 = [1]
+sum5 = 10
+print(findAPairWithGivenSumWithDict(arr1, sum1))
+print(findAPairWithGivenSumWithDict(arr2, sum2))
+print(findAPairWithGivenSumWithDict(arr3, sum3))
+print(findAPairWithGivenSumWithDict(arr4, sum4))
+print(findAPairWithGivenSumWithDict(arr5, sum5))
+    
+
+    
